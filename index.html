@@ -7,18 +7,53 @@
   </head>
   <body>
     <header>
-        <h1>Space Quiz</h1>
+        <h1>SPACE QUIZ</h1>
     </header>
     <main>
-        <div>
+        <section class='container'>
+            <article class='js-top-text'>Instructions...</article>
+            <section class='js-inner-sect'>
+                <img src='' alt='cool picture 1'>
+            </section>
+            <button class='butt'>Start Quiz!</button>
+        </section>
 
+        <section class='container'>
+            <article class='js-top-text'>Question text...
+              <br /><br />
+              <span>Question #x</span><span> - Score: y</span>
+            </article>
+            <section class='js-inner-sect'>
+                <form>
+                  <input type='radio' name='option1' id='A' value='A'>
+                  <label for='A'>Option 1</label><br />
+                  <input type='radio' name='option2' id='B' value='B'>
+                  <label for='A'>Option 2</label><br />
+                  <input type='radio' name='option3' id='C' value='C'>
+                  <label for='A'>Option 3</label><br />
+                  <input type='radio' name='option4' id='D' value='D'>
+                  <label for='A'>Option 4</label><br />
+                  <input type='submit' value='Submit' class='butt'>
+                </form>
+            </section>
+            <button class='butt'>Next question</button>
+        </section>
 
-        </div>
-
+        <section class='container'>
+            <article class='js-top-text'>Completion text
+                <br /><br />
+                <span>Final score: y</span>
+            </article>
+            <section class='js-inner-sect'>
+                <img src='' alt='cool picture 2'>
+            </section>
+            <button class='butt'>Restart!</button>
+        </section>
     </main>
 
     <footer>
-        <p>(c) Zacharia Lutz and Adam Newhouser 2019. Imagery from hubblesite.org</p>
+        <p>&copy; 2019 Zacharia Lutz and Adam Newhouser</p>
+        <p>Imagery from hubblesite.org</p>
     </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
