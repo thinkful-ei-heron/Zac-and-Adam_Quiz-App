@@ -69,9 +69,12 @@ function submitOption() {
     //call either wrongAnswer or correctAnswer
     //create next question button
     //call nextQuestion()
-    $('form').submit(event => {
+    $('.js-inner-sect').on('submit', 'form', event => {
         event.preventDefault();
-        if ($($('input[name="option"]:checked').val()) === STORE[currentQuestion].answer) {
+        console.log('submit pressed');
+        let input = $($('input:checked').val());
+        if (!input) alert('Please selet an answer!');
+        if (input === STORE[currentQuestion].answer) {
             correctAnswer();
         }
         else wrongAnswer();

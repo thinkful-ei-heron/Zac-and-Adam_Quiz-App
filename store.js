@@ -6,7 +6,7 @@ const STORE = [
         options: [
             '5',
             '6',
-            "8",
+            '8',
             '10'
         ],
         answer: '8'
@@ -52,8 +52,3 @@ const STORE = [
         answer: '1'
     }
 ];
-
-for (let i = 0; i < STORE.length; i++) {
-    console.log(STORE[i].question);
-    console.log(STORE[i].answer);
-}
