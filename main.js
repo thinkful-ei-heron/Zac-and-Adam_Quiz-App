@@ -30,7 +30,6 @@ function nextQuestion() {
     //calls renderQuestion
     //calls displayFinalQuestion after 
     $('.butt').click(event => {
-        currentQuestion++;
         console.log(currentQuestion);
         if (currentQuestion === STORE.length) {
             displayFinalResults();
@@ -44,13 +43,14 @@ function renderQuestion() {
     //displays currentQuestion and currentScore
     //displays currentQuestion options
     //calls submitOption
-    let option1 = STORE[currentQuestion].options[0];
-    let option2 = STORE[currentQuestion].options[1];
-    let option3 = STORE[currentQuestion].options[2];
-    let option4 = STORE[currentQuestion].options[3];
-    $('.js-top-text').html(`<span>${STORE[currentQuestion].question}</span>
+    currentQuestion++;
+    let option1 = STORE[currentQuestion - 1].options[0];
+    let option2 = STORE[currentQuestion - 1].options[1];
+    let option3 = STORE[currentQuestion - 1].options[2];
+    let option4 = STORE[currentQuestion - 1].options[3];
+    $('.js-top-text').html(`<span>${STORE[currentQuestion - 1].question}</span>
     <br /><br />
-    <span>Question # ${currentQuestion + 1}/${STORE.length}</span><span> - Score: ${score}/${currentQuestion}</span>`);
+    <span>Question # ${currentQuestion}/${STORE.length}</span><span> - Score: ${score}/${currentQuestion}</span>`);
     $('.js-inner-sect').html(`<form>
     <input type='radio' name='option' id='A' value='${option1}'>
     <label for='A'>${option1}</label><br />
@@ -80,7 +80,7 @@ function submitOption() {
         let input = $('input[name="option"]:checked').val();
         console.log(input);
         if (!input) alert('Please select an answer!');
-        if (input === STORE[currentQuestion].answer) {
+        if (input === STORE[currentQuestion - 1].answer) {
             correctAnswer();
         }
         else wrongAnswer();
@@ -94,7 +94,7 @@ function wrongAnswer() {
     $('.js-inner-sect').html(`
         <h2>Oops!</h2>
         <img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>
-        <p>The correct answer is: ${STORE[currentQuestion].answer}
+        <p>The correct answer is: ${STORE[currentQuestion - 1].answer}
     `);
     $('.button-bottom').removeAttr('disabled', '');
     nextQuestion();
@@ -118,6 +118,21 @@ function displayFinalResults() {
     //input html for final results
     //create restart quiz button
     //call restartQuiz
+    if (score < 4) {
+        $('.js-top-text').html(
+            `<h2>Sorry!</h2>
+            <p>Final Score: ${score}/${SCORE.length}</p>
+            <p>Being an Astronaut is not written in your stars!</p>`
+        )
+    } else {
+        $('.js-top-text').html(
+            `<h2>Congratulations!</h2>
+            <p>Final Score: ${score}/${SCORE.length}</p>
+            <p>insert witty comment</p>`
+        )
+    }
+    $('.button-bottom').text('Restart Quiz');
+    restartQuiz();
 }
 
 //resets the question number and score
