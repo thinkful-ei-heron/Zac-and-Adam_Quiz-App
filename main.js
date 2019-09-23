@@ -19,7 +19,11 @@ function landingPage() {
 function startQuiz() {
     //Listen for the submit on the 'start quiz' button
     //call renderQuestion()
-
+    $('.butt').click(event => {
+        renderQuestion();
+        $('.button-bottom').addClass('.button-next');
+        $('.button-bottom').removeClass('.button-start');
+    });
 }
 
 //generates the next question
@@ -34,6 +38,26 @@ function renderQuestion() {
     //displays currentQuestion and currentScore
     //displays currentQuestion options
     //calls submitOption
+    let option1 = STORE[currentQuestion].options[0];
+    let option2 = STORE[currentQuestion].options[1];
+    let option3 = STORE[currentQuestion].options[2];
+    let option4 = STORE[currentQuestion].options[3];
+    $('.js-top-text').html(`<span>${STORE[currentQuestion].question}</span>
+    <br /><br />
+    <span>Question # ${currentQuestion}/${STORE.length}</span><span> - Score: ${score}/${currentQuestion}</span>`);
+    $('.js-inner-sect').html(`<form>
+    <input type='radio' name='option' id='A' value='A'>
+    <label for='A'>${option1}</label><br />
+    <input type='radio' name='option' id='B' value='B'>
+    <label for='A'>${option2}</label><br />
+    <input type='radio' name='option' id='C' value='C'>
+    <label for='A'>${option3}</label><br />
+    <input type='radio' name='option' id='D' value='D'>
+    <label for='A'>${option4}</label><br />
+    <input type='submit' value='Submit' class='butt'>
+  </form>`);
+    $('.button-bottom').text('Next Question').attr('disabled', 'true');
+    
 }
 
 //handles user option selection and submit button
