@@ -68,6 +68,13 @@ function submitOption() {
     //call either wrongAnswer or correctAnswer
     //create next question button
     //call nextQuestion()
+    $('form').submit(event => {
+        event.preventDefault();
+        if ($()) === STORE[currentQuestion].answer) {
+            correctAnswer();
+        }
+        else wrongAnswer();
+    });
 }
 
 
