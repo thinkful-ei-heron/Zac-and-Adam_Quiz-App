@@ -1,12 +1,11 @@
 'use strict';
-
     let currentQuestion;
     let score;
 
+//set up landing page
 function landingPage() {
     //display quiz instructions
     //display a cool picture
-    //call startQuiz
     $('.js-top-text').text('Welcome to our quiz app!');
     $('.js-inner-sect').html(
         '<img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>'
@@ -16,9 +15,9 @@ function landingPage() {
     score = 0;
 }
 
+//listening function for button handler
 function clickButton() {
     $('.button-bottom').click(event => {
-        console.log('CLICK');
         if (currentQuestion === 0) {
             $('.button-bottom').text('Next Question');
             renderQuestion();
@@ -34,7 +33,6 @@ function nextQuestion() {
     //listen for submit on next question button
     //calls renderQuestion
     //calls displayFinalQuestion after 
-    console.log('next question pressed');
     if (currentQuestion === STORE.length) {
         displayFinalResults();
     }
@@ -42,9 +40,10 @@ function nextQuestion() {
     };
 
 function questionText(q) {
-    $('.js-top-text').html(`<span>${STORE[currentQuestion - 1].question}</span>
-    <br /><br />
-    <span>Question #${currentQuestion} / ${STORE.length}</span><span> - Score: ${score} / ${q}</span>`);
+    $('.js-top-text').html(`
+    <h2>Question #${currentQuestion} / ${STORE.length}</span><span> - Score: ${score} / ${q}</h2>
+    <p>${STORE[currentQuestion - 1].question}</p>`
+    );
 }
 
 //renders a question
@@ -52,24 +51,25 @@ function renderQuestion() {
     //displays currentQuestion and currentScore
     //displays currentQuestion options
     //calls submitOption
-    console.log('running render');
     currentQuestion++;
     let option1 = STORE[currentQuestion - 1].options[0];
     let option2 = STORE[currentQuestion - 1].options[1];
     let option3 = STORE[currentQuestion - 1].options[2];
     let option4 = STORE[currentQuestion - 1].options[3];
     questionText(currentQuestion - 1);
-    $('.js-inner-sect').html(`<form>
-    <input type='radio' name='option' id='A' value='${option1}'>
-    <label for='A'>${option1}</label><br />
-    <input type='radio' name='option' id='B' value='${option2}'>
-    <label for='A'>${option2}</label><br />
-    <input type='radio' name='option' id='C' value='${option3}'>
-    <label for='A'>${option3}</label><br />
-    <input type='radio' name='option' id='D' value='${option4}'>
-    <label for='A'>${option4}</label><br />
-    <input type='submit' value='Submit' class='butt'>
-  </form>`);
+    $('.js-inner-sect').html(`
+    <form>
+        <input type='radio' name='option' id='A' value='${option1}'>
+        <label for='A'>${option1}</label><br />
+        <input type='radio' name='option' id='B' value='${option2}'>
+        <label for='A'>${option2}</label><br />
+        <input type='radio' name='option' id='C' value='${option3}'>
+        <label for='A'>${option3}</label><br />
+        <input type='radio' name='option' id='D' value='${option4}'>
+        <label for='A'>${option4}</label><br />
+        <input type='submit' value='Submit' class='butt'>
+    </form>`
+    );
     $('.button-bottom').attr('disabled', '');
     submitOption();
 }
