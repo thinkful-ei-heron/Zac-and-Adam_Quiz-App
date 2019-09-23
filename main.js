@@ -1,7 +1,7 @@
 'use strict';
 
-let currentQuestion = 0;
-let score = 0;
+    let currentQuestion;
+    let score;
 
 function landingPage() {
     //display quiz instructions
@@ -11,16 +11,21 @@ function landingPage() {
     $('.js-inner-sect').html(
         '<img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>'
     );
-    $('.butt').text('Start Quiz!');
-    startQuiz();
+    $('.button-bottom').text('Start Quiz!');
+    currentQuestion = 0;
+    score = 0;
 }
 
-//starts the quiz
-function startQuiz() {
-    //Listen for the submit on the 'start quiz' button
-    //call renderQuestion()
-    $('.butt').click(event => {
-        renderQuestion();
+function clickButton() {
+    $('.button-bottom').click(event => {
+        console.log('CLICK');
+        if (currentQuestion === 0) {
+            $('.button-bottom').text('Next Question');
+            renderQuestion();
+        }
+        else if (currentQuestion < STORE.length) nextQuestion();
+        else if (currentQuestion === STORE.length) displayFinalResults();
+        else landingPage();
     });
 }
 
@@ -29,20 +34,19 @@ function nextQuestion() {
     //listen for submit on next question button
     //calls renderQuestion
     //calls displayFinalQuestion after 
-    $('.butt').click(event => {
-        console.log(currentQuestion);
-        if (currentQuestion === STORE.length) {
-            displayFinalResults();
-        }
-        else renderQuestion();
-    });
-}
+    console.log('next question pressed');
+    if (currentQuestion === STORE.length) {
+        displayFinalResults();
+    }
+    else renderQuestion();
+    };
 
 //renders a question
 function renderQuestion() {
     //displays currentQuestion and currentScore
     //displays currentQuestion options
     //calls submitOption
+    console.log('running render');
     currentQuestion++;
     let option1 = STORE[currentQuestion - 1].options[0];
     let option2 = STORE[currentQuestion - 1].options[1];
@@ -50,7 +54,7 @@ function renderQuestion() {
     let option4 = STORE[currentQuestion - 1].options[3];
     $('.js-top-text').html(`<span>${STORE[currentQuestion - 1].question}</span>
     <br /><br />
-    <span>Question # ${currentQuestion}/${STORE.length}</span><span> - Score: ${score}/${currentQuestion}</span>`);
+    <span>Question #${currentQuestion} / ${STORE.length}</span><span> - Score: ${score} / ${currentQuestion - 1}</span>`);
     $('.js-inner-sect').html(`<form>
     <input type='radio' name='option' id='A' value='${option1}'>
     <label for='A'>${option1}</label><br />
@@ -62,7 +66,7 @@ function renderQuestion() {
     <label for='A'>${option4}</label><br />
     <input type='submit' value='Submit' class='butt'>
   </form>`);
-    $('.button-bottom').text('Next Question').attr('disabled', '');
+    $('.button-bottom').attr('disabled', '');
     submitOption();
 }
 
@@ -74,7 +78,7 @@ function submitOption() {
     //call either wrongAnswer or correctAnswer
     //create next question button
     //call nextQuestion()
-    $('.js-inner-sect form').on('submit', function(event) {
+    $('.js-inner-sect form').on('submit', event => {
         event.preventDefault();
         console.log('submit pressed');
         let input = $('input[name="option"]:checked').val();
@@ -97,7 +101,6 @@ function wrongAnswer() {
         <p>The correct answer is: ${STORE[currentQuestion - 1].answer}
     `);
     $('.button-bottom').removeAttr('disabled', '');
-    nextQuestion();
 }
 
 //gives feedback for correct answer
@@ -110,7 +113,6 @@ function correctAnswer() {
     `);
     $('.button-bottom').removeAttr('disabled', '');
     score++;
-    nextQuestion();
 }
 
 //displays the final results view
@@ -118,35 +120,31 @@ function displayFinalResults() {
     //input html for final results
     //create restart quiz button
     //call restartQuiz
+    currentQuestion++;
     if (score < 4) {
         $('.js-top-text').html(
-            `<h2>Sorry!</h2>
-            <p>Final Score: ${score}/${SCORE.length}</p>
+            '<h2>Sorry!</h2>'
+        )
+        $('.js-inner-sect').html(
+            `<p>Final Score: ${score}/${STORE.length}</p>
             <p>Being an Astronaut is not written in your stars!</p>`
         )
     } else {
         $('.js-top-text').html(
-            `<h2>Congratulations!</h2>
-            <p>Final Score: ${score}/${SCORE.length}</p>
+            '<h2>Congratulations!</h2>'
+        );
+        $('.js-inner-sect').html(`
+            <p>Final Score: ${score}/${STORE.length}</p>
             <p>insert witty comment</p>`
-        )
+        );
     }
     $('.button-bottom').text('Restart Quiz');
-    restartQuiz();
 }
 
-//resets the question number and score
-function resetStats() {
-    //sets currentQuestion to 0
-    //sets score to 0
+function docReady() {
+    clickButton();
+    landingPage();
 }
 
-//restarts the quiz
-function restartQuiz() {
-    //listen for submit on restart quiz button
-    //call resetStats
-    //takes user back to main view
-}
-
-$(document).ready(landingPage());
-
+$(document).ready(docReady());
+    
