@@ -41,6 +41,12 @@ function nextQuestion() {
     else renderQuestion();
     };
 
+function questionText(q) {
+    $('.js-top-text').html(`<span>${STORE[currentQuestion - 1].question}</span>
+    <br /><br />
+    <span>Question #${currentQuestion} / ${STORE.length}</span><span> - Score: ${score} / ${q}</span>`);
+}
+
 //renders a question
 function renderQuestion() {
     //displays currentQuestion and currentScore
@@ -52,9 +58,7 @@ function renderQuestion() {
     let option2 = STORE[currentQuestion - 1].options[1];
     let option3 = STORE[currentQuestion - 1].options[2];
     let option4 = STORE[currentQuestion - 1].options[3];
-    $('.js-top-text').html(`<span>${STORE[currentQuestion - 1].question}</span>
-    <br /><br />
-    <span>Question #${currentQuestion} / ${STORE.length}</span><span> - Score: ${score} / ${currentQuestion - 1}</span>`);
+    questionText(currentQuestion - 1);
     $('.js-inner-sect').html(`<form>
     <input type='radio' name='option' id='A' value='${option1}'>
     <label for='A'>${option1}</label><br />
@@ -101,6 +105,7 @@ function wrongAnswer() {
         <p>The correct answer is: ${STORE[currentQuestion - 1].answer}
     `);
     $('.button-bottom').removeAttr('disabled', '');
+    questionText(currentQuestion);
 }
 
 //gives feedback for correct answer
@@ -113,6 +118,7 @@ function correctAnswer() {
     `);
     $('.button-bottom').removeAttr('disabled', '');
     score++;
+    questionText(currentQuestion);
 }
 
 //displays the final results view
