@@ -7,6 +7,7 @@ function landingPage() {
     //display quiz instructions
     //display a cool picture
     //call startQuiz
+    console.log('landing page');
     $('.js-top-text').text('Welcome to our quiz app!');
     $('.js-inner-sect').html(
         '<img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>'
@@ -70,7 +71,7 @@ function submitOption() {
     //call nextQuestion()
     $('form').submit(event => {
         event.preventDefault();
-        if ($()) === STORE[currentQuestion].answer) {
+        if ($($('input[name="option"]:checked').val()) === STORE[currentQuestion].answer) {
             correctAnswer();
         }
         else wrongAnswer();
@@ -129,5 +130,5 @@ function handleQuizApp() {
     restartQuiz();
 }
 
-landingPage();
+$(document).ready(landingPage());
 

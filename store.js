@@ -1,3 +1,5 @@
+'use strict';
+
 const STORE = [
     {
         question: 'How many planets are in our solar system?',
@@ -49,9 +51,9 @@ const STORE = [
         ],
         answer: '1'
     }
-]
+];
 
-for (let i = 0; i <= STORE.length; i++) {
+for (let i = 0; i < STORE.length; i++) {
     console.log(STORE[i].question);
     console.log(STORE[i].answer);
 }
