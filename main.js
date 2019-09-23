@@ -1,10 +1,25 @@
+'use strict';
+
 let currentQuestion = 0;
 let score = 0;
+
+function landingPage() {
+    //display quiz instructions
+    //display a cool picture
+    //call startQuiz
+    $('.js-top-text').text('Welcome to our quiz app!');
+    $('.js-inner-sect').html(
+        '<img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>'
+    );
+    $('.butt').addClass('button-start').text('Start Quiz!');
+    startQuiz();
+}
 
 //starts the quiz
 function startQuiz() {
     //Listen for the submit on the 'start quiz' button
     //call renderQuestion()
+
 }
 
 //generates the next question
@@ -70,6 +85,7 @@ function restartQuiz() {
 
 //Document ready function to call other functions
 function handleQuizApp() {
+    landingPage();
     startQuiz();
     nextQuestion();
     renderQuestion();
@@ -77,9 +93,10 @@ function handleQuizApp() {
     wrongAnswer();
     correctAnswer();
     updateScore();
-    updateQuestionNumber();
     displayFinalResults();
     resetStats();
     restartQuiz();
 }
+
+landingPage();
 

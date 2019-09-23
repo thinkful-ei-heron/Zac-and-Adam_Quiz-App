@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+  }
+
+body {
+    font-family: sans-serif
+}
+header {
+    text-align: center;
+}
+footer {
+    text-align: center;
+}
+
+.container {
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid black;
+}
+img {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+article {
+    width: 90%;
+    height: 80px;
+    padding: 5px;
+    margin: 0 auto;
+    border: 1px dashed black;
+}
+.js-inner-sect {
+    display: block;
+    border: 1px dashed black;
+    width: 80%;
+    height: 200px;
+    padding: 5px;
+    margin: 16px auto;
+}
+
+.butt {
+    display: block;
+    width: 100px;
+    padding: 7px;
+    margin: 0 auto;
+}
+#A, #B, #C, #D {
+    margin: 10px;
+}
