@@ -87,7 +87,10 @@ function submitOption() {
         console.log('submit pressed');
         let input = $('input[name="option"]:checked').val();
         console.log(input);
-        if (!input) alert('Please select an answer!');
+        if (!input) {
+            alert('Please select an answer!');
+            return;
+        }    
         if (input === STORE[currentQuestion - 1].answer) {
             correctAnswer();
         }
