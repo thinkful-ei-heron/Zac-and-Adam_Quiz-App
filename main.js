@@ -6,7 +6,8 @@
 function landingPage() {
     //display quiz instructions
     //display a cool picture
-    $('.js-top-text').text('Welcome to our quiz app!');
+    //reset question and score
+    $('.js-top-text').text('You are about to embark on an incredible journey of space knowledge! A galaxy of multiple choice questions await....');
     $('.js-inner-sect').html(
         '<img src=\'images/saturn.jpg\' alt=\'planet Saturn\'></img>'
     );
@@ -30,15 +31,14 @@ function clickButton() {
 
 //generates the next question
 function nextQuestion() {
-    //listen for submit on next question button
-    //calls renderQuestion
-    //calls displayFinalQuestion after 
+    //checks between next question and final question
     if (currentQuestion === STORE.length) {
         displayFinalResults();
     }
     else renderQuestion();
     };
 
+//Updates top text for the question and the stats
 function questionText(q) {
     $('.js-top-text').html(`
     <h2>Question #${currentQuestion} / ${STORE.length}</span><span> - Score: ${score} / ${q}</h2>
@@ -48,8 +48,7 @@ function questionText(q) {
 
 //renders a question
 function renderQuestion() {
-    //displays currentQuestion and currentScore
-    //displays currentQuestion options
+    //displays question and options
     //calls submitOption
     currentQuestion++;
     let option1 = STORE[currentQuestion - 1].options[0];
@@ -77,16 +76,14 @@ function renderQuestion() {
 //handles user option selection and submit button
 function submitOption() {
     //listens for submit button
-    //if no option selected, log error
+    //if no option selected, do alert
     //checks user seclected option against the STORE.answer
     //call either wrongAnswer or correctAnswer
     //create next question button
     //call nextQuestion()
     $('.js-inner-sect form').on('submit', event => {
         event.preventDefault();
-        console.log('submit pressed');
         let input = $('input[name="option"]:checked').val();
-        console.log(input);
         if (!input) {
             alert('Please select an answer!');
             return;
@@ -114,7 +111,7 @@ function wrongAnswer() {
 //gives feedback for correct answer
 function correctAnswer() {
     //input html for correctAnwser content
-    //call updateScore
+    //increment score
     $('.js-inner-sect').html(`
         <h2>That is correct!</h2>
         <img src=${STORE[currentQuestion - 1].image} alt=${STORE[currentQuestion - 1].alt}></img>
@@ -128,7 +125,6 @@ function correctAnswer() {
 function displayFinalResults() {
     //input html for final results
     //create restart quiz button
-    //call restartQuiz
     currentQuestion++;
     if (score < 4) {
         $('.js-top-text').html(

@@ -26,8 +26,8 @@ form {
 
 .container {
     max-width: 500px;
-    margin: 30px auto;
-    padding: 20px;
+    margin: 0 auto;
+    padding: 8px;
 }
 img {
     display: block;
@@ -42,15 +42,10 @@ article {
     margin: 0 auto;
     
 }
-
-.js-top-text {
-
-}
 .js-inner-sect {
     display: block;
     width: 80%;
-    padding: 5px;
-    margin: 16px auto;
+    margin: 12px auto;
 }
 
 .butt {
