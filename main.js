@@ -8,7 +8,7 @@ function landingPage() {
     //display a cool picture
     $('.js-top-text').text('Welcome to our quiz app!');
     $('.js-inner-sect').html(
-        '<img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>'
+        '<img src=\'images/saturn.jpg\' alt=\'planet Saturn\'></img>'
     );
     $('.button-bottom').text('Start Quiz!');
     currentQuestion = 0;
@@ -104,7 +104,7 @@ function wrongAnswer() {
     //input html for wrongAnswer content
     $('.js-inner-sect').html(`
         <h2>Oops!</h2>
-        <img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>
+        <img src=${STORE[currentQuestion - 1].image} alt=${STORE[currentQuestion -1].alt}></img>
         <p>The correct answer is: ${STORE[currentQuestion - 1].answer}
     `);
     $('.button-bottom').removeAttr('disabled', '');
@@ -117,7 +117,7 @@ function correctAnswer() {
     //call updateScore
     $('.js-inner-sect').html(`
         <h2>That is correct!</h2>
-        <img src=\'images/jupiter.jpg\' alt=\'cool picture 1\'></img>
+        <img src=${STORE[currentQuestion - 1].image} alt=${STORE[currentQuestion - 1].alt}></img>
     `);
     $('.button-bottom').removeAttr('disabled', '');
     score++;
@@ -132,21 +132,20 @@ function displayFinalResults() {
     currentQuestion++;
     if (score < 4) {
         $('.js-top-text').html(
-            '<h2>Sorry!</h2>'
-        )
-        $('.js-inner-sect').html(
-            `<p>Final Score: ${score}/${STORE.length}</p>
+            `<h2>Sorry!</h2>
+            <p>Final Score: ${score}/${STORE.length}</p>
             <p>Being an Astronaut is not written in your stars!</p>`
         )
     } else {
         $('.js-top-text').html(
-            '<h2>Congratulations!</h2>'
-        );
-        $('.js-inner-sect').html(`
+            `<h2>Congratulations!</h2>
             <p>Final Score: ${score}/${STORE.length}</p>
-            <p>insert witty comment</p>`
+            <p>NASA will review your application, expect a call!</p>`
         );
     }
+    $('.js-inner-sect').html(
+        `<img src='images/nebula.jpg' alt='a cool nebula'>`
+    )
     $('.button-bottom').text('Restart Quiz');
 }
 
