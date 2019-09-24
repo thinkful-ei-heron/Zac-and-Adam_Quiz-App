@@ -1,6 +1,10 @@
 * {
     box-sizing: border-box;
-  }
+}
+
+html, body {
+    height: 100%;
+}
 
 body {
     font-family: 'Turret Road', sans-serif;
@@ -10,19 +14,9 @@ body {
     background-size: cover;
     text-align: center;
 }
-header {
-    
-}
-footer {
-    
-}
 
 h1 {
     font-family: 'Audiowide', sans-serif;
-}
-
-h2 {
-    
 }
 
 form {
