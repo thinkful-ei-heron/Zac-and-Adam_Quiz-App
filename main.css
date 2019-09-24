@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 
-html, body {
+html {
     height: 100%;
 }
 
@@ -13,6 +13,7 @@ body {
     background-image: url(images/background2.jpg);
     background-size: cover;
     text-align: center;
+    min-height: 100%;
 }
 
 h1 {
