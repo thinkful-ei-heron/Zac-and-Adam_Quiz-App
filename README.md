@@ -1,1 +1,1 @@
-Zac and Adam's Quiz App
+Zacharia Lutz and Adam Newhouser pair Quiz App project
