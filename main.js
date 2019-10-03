@@ -61,11 +61,11 @@ function renderQuestion() {
         <input type='radio' name='option' id='A' value='${option1}'>
         <label for='A'>${option1}</label><br />
         <input type='radio' name='option' id='B' value='${option2}'>
-        <label for='A'>${option2}</label><br />
+        <label for='B'>${option2}</label><br />
         <input type='radio' name='option' id='C' value='${option3}'>
-        <label for='A'>${option3}</label><br />
+        <label for='C'>${option3}</label><br />
         <input type='radio' name='option' id='D' value='${option4}'>
-        <label for='A'>${option4}</label><br />
+        <label for='D'>${option4}</label><br />
         <input type='submit' value='Submit' class='butt'>
     </form>`
     );
